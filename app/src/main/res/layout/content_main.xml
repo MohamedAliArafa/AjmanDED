@@ -6,6 +6,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.zeowls.ajmanded.MainActivityFragment"
     tools:showIn="@layout/activity_main"
+    android:background="@color/accent_orange"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
@@ -17,6 +18,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bg_red_dark"
         android:orientation="vertical">
 
         <android.support.v4.view.ViewPager
