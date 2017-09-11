@@ -10,6 +10,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -18,17 +20,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.zeowls.ajmanded.ui.AnimatedFragment;
-import com.zeowls.ajmanded.ui.CircularAction.FloatingActionButton;
 import com.zeowls.ajmanded.ui.CircularAction.FloatingActionMenu;
 import com.zeowls.ajmanded.ui.CircularAction.SubActionButton;
-import com.zeowls.ajmanded.ui.spacetablayout.SpaceTabLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     List<Fragment> mFragments;
     String[] fragmentsTitles;
     private ViewPager vpPager;
-    private SpaceTabLayout vpPagerHeader;
+    private TabLayout vpPagerHeader;
 
     private static final int CHATHEAD_OVERLAY_PERMISSION_REQUEST_CODE = 100;
     private boolean restartService = true;
@@ -62,16 +66,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mLogo = (ImageView) findViewById(R.id.logo);
         mAppBar = (AppBarLayout) findViewById(R.id.appbar);
         vpPager = (ViewPager) findViewById(R.id.pager);
-        vpPagerHeader = (SpaceTabLayout) findViewById(R.id.pager_header);
+//        vpPagerHeader = (SpaceTabLayout) findViewById(R.id.pager_header);
+        vpPagerHeader = (TabLayout) findViewById(R.id.pager_header);
 
         mFragments = new ArrayList<>();
         mFragments.add(new HomeTabFragment());
         mFragments.add(new AboutDEDFragment());
-        mFragments.add(new AboutDEDFragment());
+//        mFragments.add(new AboutDEDFragment());
         mFragments.add(new OnlineServicesFragment());
 
         fragmentsTitles = new String[]{this.getString(R.string.online_services),
@@ -85,18 +94,56 @@ public class MainActivity extends AppCompatActivity {
         // make the pager RTL by calling the last fragment in list
         vpPager.setCurrentItem(mFragments.size() - 1);
 
+        vpPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Window window = MainActivity.this.getWindow();
+
+                switch (position){
+                    case 0:
+                        mToolbar.setBackground(getResources().getDrawable(R.drawable.bg_gradiant_brown));
+//                        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//                        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//                        window.setStatusBarColor(ContextCompat.getColor(MainActivity.this,R.color.bg_dark_brown));
+                        break;
+                    case 1:
+                        mToolbar.setBackground(getResources().getDrawable(R.drawable.bg_gradiant_blue));
+//                        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//                        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//                        window.setStatusBarColor(ContextCompat.getColor(MainActivity.this,R.color.bg_dark_royal));
+                        break;
+                    case 2:
+                        mToolbar.setBackground(getResources().getDrawable(R.drawable.bg_gradiant_red));
+//                        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//                        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//                        window.setStatusBarColor(ContextCompat.getColor(MainActivity.this,R.color.bg_dark_red));
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         //we need the savedInstanceState to get the position
-        vpPagerHeader.initialize(vpPager, getSupportFragmentManager(), mFragments);
-
-        vpPagerHeader.setTabOneText(R.string.home);
-        vpPagerHeader.setTabTwoText(R.string.e_services);
-        vpPagerHeader.setTabThreeText(R.string.about_ded);
-        vpPagerHeader.setTabFourText(R.string.latest_news);
-
-        vpPagerHeader.setTabOneIcon(R.drawable.ic_home_icon);
-        vpPagerHeader.setTabTwoIcon(R.drawable.ic_serviceicon);
-        vpPagerHeader.setTabThreeIcon(R.drawable.ic_aboutusicon);
-        vpPagerHeader.setTabFourIcon(R.drawable.ic_newsicon);
+//        vpPagerHeader.initialize(vpPager, getSupportFragmentManager(), mFragments);
+//
+//        vpPagerHeader.setTabOneText(R.string.home);
+//        vpPagerHeader.setTabTwoText(R.string.e_services);
+//        vpPagerHeader.setTabThreeText(R.string.about_ded);
+//        vpPagerHeader.setTabFourText(R.string.latest_news);
+//
+//        vpPagerHeader.setTabOneIcon(R.drawable.ic_home_icon);
+//        vpPagerHeader.setTabTwoIcon(R.drawable.ic_serviceicon);
+//        vpPagerHeader.setTabThreeIcon(R.drawable.ic_aboutusicon);
+//        vpPagerHeader.setTabFourIcon(R.drawable.ic_newsicon);
 
         // Attach the page change listener inside the activity
         vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -121,18 +168,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        vpPagerHeader.setupWithViewPager(vpPager);
+        for (int i = 0; i < mFragments.size(); i++) {
+            TextView tab = (TextView) LayoutInflater.from(this).inflate(
+                    R.layout.tab_item_main, null);
+            tab.setText(fragmentsTitles[i]);
+            tab.setTextColor(getResources().getColorStateList(R.color.tab_colors_list_bright));
+            vpPagerHeader.getTabAt(i).setCustomView(tab);
+        }
+
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setElevation(0);
 
-        ImageView fabIconNew = new ImageView(this);
-        fabIconNew.setImageDrawable(getResources().getDrawable(R.drawable.ic_socialmediaicon));
-        FloatingActionButton fab = new FloatingActionButton.Builder(this)
-                .setContentView(fabIconNew)
-                .build();
+//        ImageView fabIconNew = new ImageView(this);
+//        fabIconNew.setImageDrawable(getResources().getDrawable(R.drawable.ic_socialmediaicon));
+//        FloatingActionButton fab = new FloatingActionButton.Builder(this)
+//                .setContentView(fabIconNew)
+//                .build();
 
-        int padding = ChatHeadUtils.dpToPx(this, 10);
-        fab.setPadding(padding, padding, padding, padding);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+//        int padding = ChatHeadUtils.dpToPx(this, 10);
+//        fab.setPadding(padding, padding, padding, padding);
+
         SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
 
         ImageView item1 = new ImageView(this);
@@ -195,61 +254,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        try {
+            if (restartService) {
+                stopService(new Intent(this, ChatHeadService.class));
+                restartService = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (isRTL) {
             overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
         } else {
             overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
         }
     }
-
-
-//    @Override
-//    public boolean onTouch(final View view, MotionEvent event) {
-//        switch (event.getActionMasked()) {
-//            case MotionEvent.ACTION_DOWN:
-//                dX = view.getX() - event.getRawX();
-//                dY = view.getY() - event.getRawY();
-//                lastAction = MotionEvent.ACTION_DOWN;
-//                oldX = event.getX();
-//                oldY = event.getY();
-//                startTime = System.currentTimeMillis();
-//                view.animate().setInterpolator(new BounceInterpolator()).scaleX(1.5f).start();
-//                view.animate().setInterpolator(new BounceInterpolator()).scaleY(1.5f).start();
-//                break;
-//
-//            case MotionEvent.ACTION_MOVE:
-//                view.setY(event.getRawY() + dY);
-//                view.setX(event.getRawX() + dX);
-//                lastAction = MotionEvent.ACTION_MOVE;
-//                break;
-//
-//            case MotionEvent.ACTION_UP:
-//                ViewGroup parent = (ViewGroup) view.getParent();
-//                if (lastAction == MotionEvent.ACTION_DOWN)
-//                    Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
-//                int parentWidth = parent.getWidth();
-//                int viewWidth = view.getWidth();
-//                float distance;
-//                if (isRTL) {
-//                    distance = parentWidth - view.getRight();
-//                } else {
-//                    distance = parentWidth - view.getLeft();
-//                }
-//
-//                view.animate().setInterpolator(new BounceInterpolator()).scaleX(1.0f).start();
-//                view.animate().setInterpolator(new BounceInterpolator()).scaleY(1.0f).start();
-//
-//                if (isRTL) {
-//                    view.animate().setInterpolator(new OvershootInterpolator()).translationX((viewWidth * .1f)).withLayer();
-//                } else {
-//                    view.animate().setInterpolator(new OvershootInterpolator()).translationX(distance - (viewWidth * 1.2f)).withLayer();
-//                }
-//                break;
-//            default:
-//                return false;
-//        }
-//        return true;
-//    }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {
         boolean isRTL;
@@ -301,11 +319,22 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        MenuItem action_lang = menu.findItem(R.id.action_lang);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        final MenuItem item = menu.findItem(R.id.action_call);
+        item.getActionView().setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FaqActivity.class));
+            }
+        });
+//        MenuItem action_lang = menu.findItem(R.id.action_call);
 //        if (isRTL)
 //            action_lang.setIcon(getResources().getDrawable(R.drawable.ic_topicn2));
 //        else
@@ -390,14 +419,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        try {
-            if (restartService) {
-                stopService(new Intent(this, ChatHeadService.class));
-                restartService = true;
-            }
-
-        } catch (Exception e) {
-
-        }
+//        try {
+//            if (restartService) {
+//                stopService(new Intent(this, ChatHeadService.class));
+//                restartService = true;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }

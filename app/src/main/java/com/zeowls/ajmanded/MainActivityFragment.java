@@ -55,7 +55,7 @@ public class MainActivityFragment extends Fragment {
         mFragments = new ArrayList<>();
         mFragments.add(new OnlineServicesFragment());
         mFragments.add(new AboutDEDFragment());
-        mFragments.add(new AboutDEDFragment());
+//        mFragments.add(new AboutDEDFragment());
         mFragments.add(new OnlineServicesFragment());
 
         fragmentsTitles = new String[]{this.getString(R.string.online_services),
@@ -64,6 +64,7 @@ public class MainActivityFragment extends Fragment {
 
         //init and set the adapter
         adapterViewPager = new MyPagerAdapter(getFragmentManager());
+        vpPager.setOffscreenPageLimit(0);
         vpPager.setAdapter(adapterViewPager);
 
         // make the pager RTL by calling the last fragment in list
@@ -77,10 +78,10 @@ public class MainActivityFragment extends Fragment {
         vpPagerHeader.setTabThreeText(R.string.about_ded);
         vpPagerHeader.setTabFourText(R.string.latest_news);
 
-        vpPagerHeader.setTabOneIcon(R.drawable.ic_icn1);
-        vpPagerHeader.setTabTwoIcon(R.drawable.ic_icn2);
-        vpPagerHeader.setTabThreeIcon(R.drawable.ic_icn3);
-        vpPagerHeader.setTabFourIcon(R.drawable.ic_icn4);
+//        vpPagerHeader.setTabOneIcon(R.drawable.ic_icn1);
+//        vpPagerHeader.setTabTwoIcon(R.drawable.ic_icn2);
+//        vpPagerHeader.setTabThreeIcon(R.drawable.ic_icn3);
+//        vpPagerHeader.setTabFourIcon(R.drawable.ic_icn4);
 
         // Attach the page change listener inside the activity
         vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

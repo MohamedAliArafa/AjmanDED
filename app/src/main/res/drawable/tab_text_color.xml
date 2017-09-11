@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_selected="true"
-        android:color="@color/bg_light_royal" />
+        android:color="@color/bg_royal_light" />
     <item
         android:state_selected="false"
         android:color="@color/text_tab_selected" />

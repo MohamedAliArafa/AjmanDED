@@ -4,10 +4,10 @@ package com.zeowls.ajmanded;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.zeowls.ajmanded.ui.AnimatedFragment;
 
@@ -17,9 +17,9 @@ import com.zeowls.ajmanded.ui.AnimatedFragment;
  */
 public class AboutDEDFragment extends AnimatedFragment {
 
-    CardView cardView;
-    CardView cardView1;
-    CardView cardView2;
+    LinearLayout cardView;
+    LinearLayout cardView1;
+    LinearLayout cardView2;
 
     public AboutDEDFragment() {
         // Required empty public constructor
@@ -29,11 +29,12 @@ public class AboutDEDFragment extends AnimatedFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        getActivity().setTheme(R.style.Theme_MyAwesomeApp_Blue);
         View view = inflater.inflate(R.layout.fragment_about_ded, container, false);
-        cardView = (CardView) view.findViewById(R.id.card);
-        cardView1 = (CardView) view.findViewById(R.id.card1);
-        cardView2 = (CardView) view.findViewById(R.id.card2);
-
+        cardView = (LinearLayout) view.findViewById(R.id.line1);
+        cardView1 = (LinearLayout) view.findViewById(R.id.line2);
+        cardView2 = (LinearLayout) view.findViewById(R.id.line3);
+//
         cardView.setVisibility(View.INVISIBLE);
         cardView1.setVisibility(View.INVISIBLE);
         cardView2.setVisibility(View.INVISIBLE);

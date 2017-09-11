@@ -4,10 +4,10 @@ package com.zeowls.ajmanded;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,9 +32,9 @@ public class HomeTabFragment extends AnimatedFragment {
 
     MapView mMapView;
     private GoogleMap googleMap;
-    CardView cardView1;
-    CardView cardView2;
-    CardView cardView3;
+    LinearLayout cardView1;
+//    CardView cardView2;
+//    CardView cardView3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,13 +72,13 @@ public class HomeTabFragment extends AnimatedFragment {
             }
         });
 
-        cardView1 = (CardView) view.findViewById(R.id.card1);
-        cardView2 = (CardView) view.findViewById(R.id.card2);
-        cardView3 = (CardView) view.findViewById(R.id.card3);
-
+        cardView1 = (LinearLayout) view.findViewById(R.id.line1);
+//        cardView2 = (CardView) view.findViewById(R.id.card2);
+//        cardView3 = (CardView) view.findViewById(R.id.card3);
+//
         cardView1.setVisibility(View.INVISIBLE);
-        cardView2.setVisibility(View.INVISIBLE);
-        cardView3.setVisibility(View.INVISIBLE);
+//        cardView2.setVisibility(View.INVISIBLE);
+//        cardView3.setVisibility(View.INVISIBLE);
         // Inflate the layout for this fragment
         return view;
     }
@@ -91,7 +91,7 @@ public class HomeTabFragment extends AnimatedFragment {
 
     @Override
     public void startAnimation(){
-        new AnimatedFragment.animate(new View[] { cardView1, cardView2, cardView3 }).execute();
+        new AnimatedFragment.animate(new View[] { cardView1 }).execute();
     }
 
     @Override

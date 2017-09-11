@@ -4,7 +4,6 @@ package com.zeowls.ajmanded;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,32 +39,39 @@ public class OnlineServicesFragment extends AnimatedFragment {
 
 
     ScrollView scrollView;
-    CardView cardView;
-    CardView cardView2;
+    LinearLayout cardView;
+    LinearLayout cardView2;
     LinearLayout cardView3;
-    CardView cardView5;
+    LinearLayout cardView4;
+    LinearLayout cardView5;
+    LinearLayout cardView6;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTheme(R.style.Theme_MyAwesomeApp_Red);
         View view = inflater.inflate(R.layout.fragment_online_services, container, false);
         scrollView = (ScrollView) view.findViewById(R.id.main_scroll);
-        cardView = (CardView) view.findViewById(R.id.card1);
-        cardView2 = (CardView) view.findViewById(R.id.card2);
-        cardView3 = (LinearLayout) view.findViewById(R.id.card3);
-        cardView5 = (CardView) view.findViewById(R.id.card5);
-
+        cardView = (LinearLayout) view.findViewById(R.id.line1);
+        cardView2 = (LinearLayout) view.findViewById(R.id.line2);
+        cardView3 = (LinearLayout) view.findViewById(R.id.line3);
+        cardView4 = (LinearLayout) view.findViewById(R.id.line4);
+        cardView5 = (LinearLayout) view.findViewById(R.id.line5);
+        cardView6 = (LinearLayout) view.findViewById(R.id.line6);
+//
         cardView.setVisibility(View.INVISIBLE);
         cardView2.setVisibility(View.INVISIBLE);
         cardView3.setVisibility(View.INVISIBLE);
+        cardView4.setVisibility(View.INVISIBLE);
         cardView5.setVisibility(View.INVISIBLE);
+        cardView6.setVisibility(View.INVISIBLE);
 
         return view;
     }
 
     @Override
     public void startAnimation() {
-        new AnimatedFragment.animate(new View[]{cardView, cardView2, cardView3, cardView5}).execute();
+        new AnimatedFragment.animate(new View[]{cardView, cardView2, cardView3, cardView4, cardView5, cardView6}).execute();
     }
 
     @Override
