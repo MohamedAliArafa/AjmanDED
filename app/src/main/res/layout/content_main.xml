@@ -23,6 +23,7 @@
         app:piv_unselectedColor="@color/gray"
         app:piv_animationType="fill"
         android:layout_margin="5dp"
+        app:piv_radius="4dp"
         android:layout_gravity="center"/>
 
     <!--<android.support.design.widget.TabLayout-->
