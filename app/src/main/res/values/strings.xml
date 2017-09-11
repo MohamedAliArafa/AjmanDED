@@ -38,33 +38,33 @@
     <string name="value_body">Team spirit, transparency, customer delight, innovation and innovation</string>
     <string name="value">The Value</string>
 
-    <string name="chathead_content_title">Demo Chat: Active</string>
-    <string name="content_text">Demo running.</string>
+    <string name="chathead_content_title" translatable="false">Demo Chat: Active</string>
+    <string name="content_text" translatable="false">Demo running.</string>
 
-    <string name="chathead_click_message">Click</string>
-    <string name="touch_finished_position" formatted="false">Current position (%d,%d)</string>
-    <string name="deleted_soon">FloatingView will be deleted soon.</string>
-    <string name="finish_deleted">FloatingView has been deleted.</string>
-    <string name="action_call">80070</string>
+    <string name="chathead_click_message" translatable="false">Click</string>
+    <string name="touch_finished_position" formatted="false" translatable="false">Current position (%d,%d)</string>
+    <string name="deleted_soon" translatable="false">FloatingView will be deleted soon.</string>
+    <string name="finish_deleted" translatable="false">FloatingView has been deleted.</string>
+    <string name="action_call" translatable="false">80070</string>
 
 
-    <string name="permissions_title">Permissions</string>
-    <string name="draw_over_permissions_message">To display Audio Widget app needs the permission to draw over another apps.</string>
-    <string name="read_ext_permissions_message">To load list of music app needs access to your media files.</string>
-    <string name="btn_continue">Continue</string>
-    <string name="btn_cancel">Cancel</string>
-    <string name="toast_permissions_not_granted">Permissions not granted.</string>
+    <string name="permissions_title" translatable="false">Permissions</string>
+    <string name="draw_over_permissions_message" translatable="false">To display Audio Widget app needs the permission to draw over another apps.</string>
+    <string name="read_ext_permissions_message" translatable="false">To load list of music app needs access to your media files.</string>
+    <string name="btn_continue" translatable="false">Continue</string>
+    <string name="btn_cancel" translatable="false">Cancel</string>
+    <string name="toast_permissions_not_granted" translatable="false">Permissions not granted.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="most_used_services">Most Used Services</string>
-    <string name="application_status">Check Application Status</string>
-    <string name="enter_application_number">Application Number</string>
-    <string name="service_centers_location">Service Centers Location</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="check_status">Check</string>
-    <string name="issue_initial_approval">Issue Initial Approval</string>
-    <string name="issue_new_permit">Issue New Permit</string>
-    <string name="issue_new_certificate">Issue New Certificate</string>
-    <string name="title_activity_splash">SplashActivity</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="most_used_services" translatable="false">Most Used Services</string>
+    <string name="application_status" translatable="false">Check Application Status</string>
+    <string name="enter_application_number" translatable="false">Application Number</string>
+    <string name="service_centers_location" translatable="false">Service Centers Location</string>
+    <string name="title_activity_maps" translatable="false">Map</string>
+    <string name="check_status" translatable="false">Check</string>
+    <string name="issue_initial_approval" translatable="false">Issue Initial Approval</string>
+    <string name="issue_new_permit" translatable="false">Issue New Permit</string>
+    <string name="issue_new_certificate" translatable="false">Issue New Certificate</string>
+    <string name="title_activity_splash" translatable="false">SplashActivity</string>
 </resources>

@@ -7,6 +7,7 @@ android {
         applicationId "com.zeowls.ajmanded"
         minSdkVersion 21
         targetSdkVersion 26
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -48,4 +49,5 @@ dependencies {
     compile 'io.freefair.android-colors:material:1.2.0'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.2'
     testCompile 'junit:junit:4.12'
+    compile 'com.romandanylyk:pageindicatorview:0.2.0@aar'
 }

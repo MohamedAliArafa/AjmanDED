@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -20,17 +19,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import com.rd.PageIndicatorView;
+import com.rd.animation.type.AnimationType;
 import com.zeowls.ajmanded.ui.AnimatedFragment;
 import com.zeowls.ajmanded.ui.CircularAction.FloatingActionMenu;
 import com.zeowls.ajmanded.ui.CircularAction.SubActionButton;
@@ -57,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     List<Fragment> mFragments;
     String[] fragmentsTitles;
     private ViewPager vpPager;
-    private TabLayout vpPagerHeader;
+//    private TabLayout vpPagerHeader;
 
     private static final int CHATHEAD_OVERLAY_PERMISSION_REQUEST_CODE = 100;
     private boolean restartService = true;
@@ -75,8 +72,9 @@ public class MainActivity extends AppCompatActivity {
         mLogo = (ImageView) findViewById(R.id.logo);
         mAppBar = (AppBarLayout) findViewById(R.id.appbar);
         vpPager = (ViewPager) findViewById(R.id.pager);
+        PageIndicatorView mPageIndicatorView = findViewById(R.id.pageIndicatorView);
 //        vpPagerHeader = (SpaceTabLayout) findViewById(R.id.pager_header);
-        vpPagerHeader = (TabLayout) findViewById(R.id.pager_header);
+//        vpPagerHeader = (TabLayout) findViewById(R.id.pager_header);
 
         mFragments = new ArrayList<>();
         mFragments.add(new HomeTabFragment());
@@ -95,11 +93,13 @@ public class MainActivity extends AppCompatActivity {
         // make the pager RTL by calling the last fragment in list
         vpPager.setCurrentItem(mFragments.size() - 1);
 
+        mPageIndicatorView.setViewPager(vpPager);
+        mPageIndicatorView.setInteractiveAnimation(true);
+        mPageIndicatorView.setAnimationType(AnimationType.FILL);
+
         vpPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Window window = MainActivity.this.getWindow();
-
                 switch (position){
                     case 0:
                         mToolbar.setBackground(getResources().getDrawable(R.drawable.bg_gradiant_brown));
@@ -169,33 +169,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        vpPagerHeader.setupWithViewPager(vpPager);
-        for (int i = 0; i < mFragments.size(); i++) {
-            TextView tab = (TextView) LayoutInflater.from(this).inflate(
-                    R.layout.tab_item_main, null);
-            tab.setText(fragmentsTitles[i]);
-            tab.setTextColor(getResources().getColorStateList(R.color.tab_colors_list_bright));
-            vpPagerHeader.getTabAt(i).setCustomView(tab);
-        }
-
-        vpPagerHeader.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                TextView tabView = (TextView) tab.getCustomView();
-                tabView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                TextView tabView = (TextView) tab.getCustomView();
-                tabView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+//        vpPagerHeader.setupWithViewPager(vpPager);
+//        for (int i = 0; i < mFragments.size(); i++) {
+//            TextView tab = (TextView) LayoutInflater.from(this).inflate(
+//                    R.layout.tab_item_main, null);
+//            tab.setText(fragmentsTitles[i]);
+//            tab.setTextColor(getResources().getColorStateList(R.color.tab_colors_list_bright));
+//            vpPagerHeader.getTabAt(i).setCustomView(tab);
+//        }
+//
+//        vpPagerHeader.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//                TextView tabView = (TextView) tab.getCustomView();
+//                tabView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+//            }
+//
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//                TextView tabView = (TextView) tab.getCustomView();
+//                tabView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//
+//            }
+//        });
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
