@@ -78,14 +78,14 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/avatar"/>
+                        android:src="@drawable/ic_call_colored"/>
 
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_margin="16dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/avatar"/>
+                        android:src="@drawable/ic_email_colored"/>
 
                 </LinearLayout>
 

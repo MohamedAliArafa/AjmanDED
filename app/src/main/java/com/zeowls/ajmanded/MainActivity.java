@@ -20,6 +20,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -176,6 +177,25 @@ public class MainActivity extends AppCompatActivity {
             tab.setTextColor(getResources().getColorStateList(R.color.tab_colors_list_bright));
             vpPagerHeader.getTabAt(i).setCustomView(tab);
         }
+
+        vpPagerHeader.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                TextView tabView = (TextView) tab.getCustomView();
+                tabView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                TextView tabView = (TextView) tab.getCustomView();
+                tabView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

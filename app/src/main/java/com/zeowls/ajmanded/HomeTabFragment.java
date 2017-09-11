@@ -43,7 +43,7 @@ public class HomeTabFragment extends AnimatedFragment {
         View view = inflater.inflate(R.layout.fragment_home_tab, container, false);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        mMapView = (MapView) view.findViewById(R.id.map);
+        mMapView = view.findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
 
         mMapView.onResume(); // needed to get the map to display immediately
