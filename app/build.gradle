@@ -27,6 +27,7 @@ dependencies {
     //custom pager indicator
     //Animation Lib
     //bounce effect for notification
+    compile 'com.android.support:multidex:1.0.2'
     compile 'com.android.support:appcompat-v7:26.0.2'
     compile 'com.android.support:support-dynamic-animation:26.0.2'
     compile 'com.roughike:bottom-bar:2.3.1'

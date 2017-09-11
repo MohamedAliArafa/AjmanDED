@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -33,13 +34,19 @@ public class FaqActivity extends AppCompatActivity {
     LinearLayout linearLayout;
     SplashChatAdapter adapter;
     ResultModel[] mModel;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
-        rv = (RecyclerView) findViewById(R.id.recycler_view);
-        linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        mToolbar = findViewById(R.id.toolbar);
+        mToolbar.setBackground(getResources().getDrawable(R.drawable.bg_gradiant_blue_light));
+        rv = findViewById(R.id.recycler_view);
+        linearLayout = findViewById(R.id.linearLayout);
         adapter = new SplashChatAdapter();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
