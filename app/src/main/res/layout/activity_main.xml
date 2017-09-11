@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:background="@color/accent_blue"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/accent_blue">
     <!-- The main content view -->
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -24,10 +24,10 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:paddingTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:background="?attr/colorPrimary"
+                android:paddingTop="24dp"
                 app:layout_collapseMode="pin">
 
                 <ImageView
@@ -41,7 +41,60 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <include layout="@layout/content_main" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/accent_orange"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="com.zeowls.ajmanded.MainActivityFragment"
+            tools:showIn="@layout/activity_main">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_red_dark"
+                android:orientation="vertical">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <com.rd.PageIndicatorView
+                    android:id="@+id/pageIndicatorView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    app:piv_animationType="fill"
+                    app:piv_radius="4dp"
+                    app:piv_selectedColor="@color/gray"
+                    app:piv_unselectedColor="@color/gray" />
+
+                <com.roughike.bottombar.BottomBar
+                    android:id="@+id/bottomBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom"
+                    android:background="@color/gray_dark"
+                    app:bb_behavior="iconsOnly"
+                    app:bb_showShadow="true"
+                    app:bb_tabXmlResource="@xml/bottombar_tabs"
+                    app:layout_behavior="com.zeowls.ajmanded.ui.ScrollingBehavior"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </LinearLayout>
+
+        </FrameLayout>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
