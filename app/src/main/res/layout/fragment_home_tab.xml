@@ -22,6 +22,30 @@
             android:paddingBottom="60dp"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Contact Us"
+                android:textColor="@color/bg_brown_dark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="368dp"
+                android:layout_height="5dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/bg_gray_light"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"/>
+
             <LinearLayout
                 android:id="@+id/line1"
                 android:layout_width="match_parent"

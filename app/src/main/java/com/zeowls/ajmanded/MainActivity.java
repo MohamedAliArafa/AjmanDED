@@ -27,7 +27,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.rd.PageIndicatorView;
-import com.rd.animation.type.AnimationType;
 import com.zeowls.ajmanded.ui.AnimatedFragment;
 import com.zeowls.ajmanded.ui.CircularAction.FloatingActionMenu;
 import com.zeowls.ajmanded.ui.CircularAction.SubActionButton;
@@ -54,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     List<Fragment> mFragments;
     String[] fragmentsTitles;
     private ViewPager vpPager;
+    PageIndicatorView mPageIndicatorView;
 //    private TabLayout vpPagerHeader;
 
     private static final int CHATHEAD_OVERLAY_PERMISSION_REQUEST_CODE = 100;
@@ -68,19 +68,19 @@ public class MainActivity extends AppCompatActivity {
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mLogo = (ImageView) findViewById(R.id.logo);
-        mAppBar = (AppBarLayout) findViewById(R.id.appbar);
-        vpPager = (ViewPager) findViewById(R.id.pager);
-        PageIndicatorView mPageIndicatorView = findViewById(R.id.pageIndicatorView);
+        mToolbar = findViewById(R.id.toolbar);
+        mLogo = findViewById(R.id.logo);
+        mAppBar = findViewById(R.id.appbar);
+        vpPager = findViewById(R.id.pager);
+        mPageIndicatorView = findViewById(R.id.pageIndicatorView);
 //        vpPagerHeader = (SpaceTabLayout) findViewById(R.id.pager_header);
 //        vpPagerHeader = (TabLayout) findViewById(R.id.pager_header);
 
         mFragments = new ArrayList<>();
-        mFragments.add(new HomeTabFragment());
-        mFragments.add(new AboutDEDFragment());
-//        mFragments.add(new AboutDEDFragment());
         mFragments.add(new OnlineServicesFragment());
+        mFragments.add(new AboutDEDFragment());
+        mFragments.add(new HomeTabFragment());
+//        mFragments.add(new AboutDEDFragment());
 
         fragmentsTitles = new String[]{this.getString(R.string.online_services),
                 this.getString(R.string.about_ded),
@@ -91,18 +91,19 @@ public class MainActivity extends AppCompatActivity {
         vpPager.setAdapter(adapterViewPager);
 
         // make the pager RTL by calling the last fragment in list
-        vpPager.setCurrentItem(mFragments.size() - 1);
+//        vpPager.setCurrentItem(mFragments.size() - 1);
 
         mPageIndicatorView.setViewPager(vpPager);
-        mPageIndicatorView.setInteractiveAnimation(true);
-        mPageIndicatorView.setAnimationType(AnimationType.FILL);
+//        mPageIndicatorView.setInteractiveAnimation(true);
+//        mPageIndicatorView.setAnimationType(AnimationType.FILL);
 
         vpPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 switch (position){
                     case 0:
-                        mToolbar.setBackground(getResources().getDrawable(R.drawable.bg_gradiant_brown));
+                        mToolbar.setBackground(getResources().getDrawable(R.drawable.bg_gradiant_red));
+
 //                        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //                        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 //                        window.setStatusBarColor(ContextCompat.getColor(MainActivity.this,R.color.bg_dark_brown));
@@ -114,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
 //                        window.setStatusBarColor(ContextCompat.getColor(MainActivity.this,R.color.bg_dark_royal));
                         break;
                     case 2:
-                        mToolbar.setBackground(getResources().getDrawable(R.drawable.bg_gradiant_red));
+                        mToolbar.setBackground(getResources().getDrawable(R.drawable.bg_gradiant_brown));
+
 //                        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //                        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 //                        window.setStatusBarColor(ContextCompat.getColor(MainActivity.this,R.color.bg_dark_red));
